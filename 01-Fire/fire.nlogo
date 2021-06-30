@@ -1,43 +1,49 @@
 to setup
+
   clear-all
   reset-ticks
 
-  ; plant trees
+  ; Wald pflanzen
+
   ask patches with [(random-float 1) < initial-density]
   [
     set pcolor green
   ]
 
-  ; set fire
+  ; Feuer
   ask patches with [pxcor = min-pxcor and pcolor = green]
   [
     set pcolor red
   ]
+
+
 end
+
 
 to go
 
   ask patches with [pcolor = red]
   [
-    ; ignite neigboring patches
+    ; nachbarn anzuenden
+
     ask patches in-radius 1 with [pcolor = green]
     [
       set pcolor red
     ]
 
-    ; set myself to burned
     set pcolor brown
+
   ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-587
-10
-1403
-827
+367
+21
+981
+636
 -1
 -1
-8.0
+6.0
 1
 10
 1
@@ -58,10 +64,10 @@ ticks
 30.0
 
 BUTTON
-253
-43
-316
-76
+63
+63
+129
+96
 NIL
 setup
 NIL
@@ -75,10 +81,10 @@ NIL
 1
 
 BUTTON
-254
-87
-317
-120
+180
+63
+243
+96
 NIL
 go
 T
@@ -92,16 +98,16 @@ NIL
 1
 
 SLIDER
-63
-70
-235
-103
+60
+133
+232
+166
 initial-density
 initial-density
 0
 1
-0.9
-0.001
+0.56
+0.01
 1
 NIL
 HORIZONTAL
@@ -448,19 +454,10 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.1
+NetLogo 6.1.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
-<experiments>
-  <experiment name="PercolationPoint" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="500"/>
-    <metric>percolated</metric>
-    <steppedValueSet variable="initial-density" first="0.4" step="0.01" last="0.9"/>
-  </experiment>
-</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default
